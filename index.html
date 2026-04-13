@@ -33,13 +33,17 @@
             <li><a href="#">Preferiti</a></li>
             <li><a href="#">Calendario</a></li>
             <li><a href="#">Impostazioni</a></li>
+
+            <li class="album-wrap">
+    <a href="#">Album</a>
+    <div class="album-hover" id="albumHoverBtn">+ Aggiungi foto/recensione</div>
+</li>
            <li class="contatti-wrap">
     <a href="#">Contatti</a>
     <div class="contatti-info">
         📞 +39 06 1234 5678<br>
         ✉️ info@nextrip.it
     </div>
-</li>
 </li>
         </ul>
     </aside>
@@ -51,6 +55,7 @@
                 <a href="#">Hotel</a>
                 <a href="#">Ristoranti</a>
                 <a href="#">Voli</a>
+                <a href="#">Luoghi</a>
             </div>
         </nav>
 
@@ -125,6 +130,16 @@
 
         </section>
 
+        <!-- PANNELLO ALBUM -->
+        <div class="album-panel" id="albumPanel">
+            <div class="album-panel-box">
+                <span class="album-panel-close" id="albumPanelClose">✕</span>
+                <div style="font-size: 36px; margin-bottom: 12px;">⚠️</div>
+                <h2 class="album-panel-titolo">Funzione non disponibile</h2>
+                <button class="album-panel-btn" id="albumPanelOk">Ok, capito</button>
+            </div>
+        </div>
+
     </div>
 </div>
 
@@ -136,14 +151,21 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-    const searchInput = document.getElementById('searchInput');
-    const filterBtn   = document.getElementById('filterBtn');
-    const dropdown    = document.getElementById('filterDropdown');
-    const applyBtn    = document.getElementById('applyBtn');
-    const counter     = document.getElementById('resultsCount');
+    const searchInput     = document.getElementById('searchInput');
+    const filterBtn       = document.getElementById('filterBtn');
+    const dropdown        = document.getElementById('filterDropdown');
+    const applyBtn        = document.getElementById('applyBtn');
+    const counter         = document.getElementById('resultsCount');
+    const albumHoverBtn   = document.getElementById('albumHoverBtn');
+    const albumPanel      = document.getElementById('albumPanel');
+    const albumPanelClose = document.getElementById('albumPanelClose');
+    const albumPanelOk    = document.getElementById('albumPanelOk');
+    const section         = document.querySelector('section');
+    const searchBar       = document.querySelector('.search-bar');
 
     let currentSort = null;
 
+    // FILTRI
     filterBtn.addEventListener('click', function(e) {
         e.stopPropagation();
         dropdown.classList.toggle('show');
@@ -180,7 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function applyFilters() {
         const q = searchInput.value.toLowerCase().trim();
-        const section = document.querySelector('section');
         const cards = Array.from(section.querySelectorAll('.card'));
 
         cards.forEach(function(card) {
@@ -210,6 +231,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     applyFilters();
+
+    // ALBUM
+    function apriAlbum() {
+        section.style.display = 'none';
+        searchBar.style.display = 'none';
+        albumPanel.classList.add('show');
+    }
+
+    function chiudiAlbum() {
+        section.style.display = '';
+        searchBar.style.display = '';
+        albumPanel.classList.remove('show');
+    }
+
+    albumHoverBtn.addEventListener('click', apriAlbum);
+    albumPanelClose.addEventListener('click', chiudiAlbum);
+    albumPanelOk.addEventListener('click', chiudiAlbum);
+
+    // CONTATTI hover
+    const contattiWrap = document.querySelector('.contatti-wrap');
+    const contattiInfo = document.querySelector('.contatti-info');
+
+    contattiWrap.addEventListener('mouseenter', function() {
+        contattiInfo.style.display = 'block';
+    });
+
+    contattiWrap.addEventListener('mouseleave', function() {
+        contattiInfo.style.display = 'none';
+    });
 
 });
 </script>

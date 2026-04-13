@@ -449,3 +449,75 @@ section {
 .contatti-wrap:hover .contatti-info {
     display: block;
 }
+
+.album-panel {
+    display: none;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background: #f4f1ea;
+    padding: 40px;
+}
+
+.album-panel.show {
+    display: flex;
+}
+
+.album-panel-box {
+    background: #fff;
+    border: 1px solid #cfc8b8;
+    border-radius: 16px;
+    padding: 40px 32px;
+    text-align: center;
+    max-width: 360px;
+    width: 100%;
+    position: relative;
+}
+
+.album-panel-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #888;
+}
+
+.album-panel-close:hover {
+    color: #3f4f3a;
+}
+
+.album-panel-titolo {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3f4f3a;
+    margin-bottom: 8px;
+}
+
+.album-panel-btn {
+    background: #3f4f3a;
+    color: #f4f1ea;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.album-panel-btn:hover {
+    background: #2f3a2b;
+}
+
+.album-hover {
+    display: none;
+    font-size: 86%;
+    color: #5c7440;
+    padding: 4px 12px;
+    cursor: pointer;
+    border-left: 2px solid #7f8f6b;
+    margin-top: 4px;
+}
+
+.album-wrap:hover .album-hover {
+    display: block;
+}
