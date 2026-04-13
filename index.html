@@ -4,12 +4,8 @@
     <title>NexTrip</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- CSS -->
     <link rel="stylesheet" href="azienda.css">
-
 </head>
-
 <body>
 
 <header>
@@ -51,7 +47,35 @@
             </div>
         </nav>
 
-        <!-- 🔥 SECTION CON CARD -->
+       <!-- BARRA RICERCA -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍  Cerca..." />
+            <div class="search-divider"></div>
+            <div class="filter-wrap">
+                <button class="filter-toggle" id="filterBtn">
+                    Filtri <span class="filter-arrow" id="filterArrow">▼</span>
+                </button>
+                <div class="filter-dropdown" id="filterDropdown">
+                    <div class="dd-group">
+                        <div class="dd-group-label">Ordina per prezzo</div>
+                        <label class="dd-option"><input type="radio" name="sort" value="asc"> Meno costoso prima</label>
+                        <label class="dd-option"><input type="radio" name="sort" value="desc"> Più costoso prima</label>
+                    </div>
+                    <hr class="dd-hr">
+                    <div class="dd-group">
+                        <div class="dd-group-label">Budget massimo</div>
+                        <label class="dd-option"><input type="radio" name="sort" value="budget1"> Fino a €50</label>
+                        <label class="dd-option"><input type="radio" name="sort" value="budget2"> Fino a €150</label>
+                        <label class="dd-option"><input type="radio" name="sort" value="budget3"> Oltre €150</label>
+                    </div>
+                    <button class="dd-apply" id="applyBtn">Applica filtri</button>
+                </div>
+            </div>
+            <span class="results-count" id="resultsCount"></span>
+        </div>
+
+
+        <!-- SECTION CON CARD -->
         <section>
 
             <div class="card" id="hotelCard">
@@ -102,8 +126,86 @@
 </footer>
 
 <!-- SCRIPT -->
-<script src="service-hotel.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
 
+    const searchInput = document.getElementById('searchInput');
+    const filterBtn   = document.getElementById('filterBtn');
+    const dropdown    = document.getElementById('filterDropdown');
+    const applyBtn    = document.getElementById('applyBtn');
+    const counter     = document.getElementById('resultsCount');
+
+    let currentSort = null;
+
+    filterBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('show');
+        filterBtn.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function() {
+        dropdown.classList.remove('show');
+        filterBtn.classList.remove('open');
+    });
+
+    dropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    document.querySelectorAll('.dd-option').forEach(function(opt) {
+        opt.querySelector('input').addEventListener('change', function() {
+            document.querySelectorAll('.dd-option').forEach(function(o) {
+                o.classList.remove('selected');
+            });
+            opt.classList.add('selected');
+        });
+    });
+
+    applyBtn.addEventListener('click', function() {
+        const sv = document.querySelector('input[name="sort"]:checked');
+        currentSort = sv ? sv.value : null;
+        dropdown.classList.remove('show');
+        filterBtn.classList.remove('open');
+        applyFilters();
+    });
+
+    searchInput.addEventListener('input', applyFilters);
+
+    function applyFilters() {
+        const q = searchInput.value.toLowerCase().trim();
+        const section = document.querySelector('section');
+        const cards = Array.from(section.querySelectorAll('.card'));
+
+        cards.forEach(function(card) {
+            const nome   = (card.dataset.nome || '').toLowerCase();
+            const tipo   = (card.dataset.tipo || '').toLowerCase();
+            const prezzo = parseFloat(card.dataset.prezzo) || 0;
+
+            let visible = true;
+            if (q && !nome.includes(q) && !tipo.includes(q)) visible = false;
+            if (currentSort === 'budget1' && prezzo > 50)    visible = false;
+            if (currentSort === 'budget2' && prezzo > 150)   visible = false;
+            if (currentSort === 'budget3' && prezzo <= 150)  visible = false;
+
+            card.classList.toggle('hidden', !visible);
+        });
+
+        const visible = cards.filter(function(c) { return !c.classList.contains('hidden'); });
+        const hidden  = cards.filter(function(c) { return  c.classList.contains('hidden'); });
+
+        if (currentSort === 'asc')  visible.sort(function(a,b){ return parseFloat(a.dataset.prezzo) - parseFloat(b.dataset.prezzo); });
+        if (currentSort === 'desc') visible.sort(function(a,b){ return parseFloat(b.dataset.prezzo) - parseFloat(a.dataset.prezzo); });
+
+        visible.concat(hidden).forEach(function(c) { section.appendChild(c); });
+
+        const n = visible.length;
+        counter.textContent = n + ' risultat' + (n === 1 ? 'o' : 'i');
+    }
+
+    applyFilters();
+
+});
+</script>
 
 </body>
 </html>
