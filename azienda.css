@@ -9,6 +9,7 @@ header {
   border-bottom: 1px solid #2f3a2b;
 }
 
+
 .Titolo {
   position: absolute;
   left: 50%;
@@ -520,4 +521,41 @@ section {
 
 .album-wrap:hover .album-hover {
     display: block;
+}
+
+.impostazioni-menu {
+    display: none;
+    padding: 8px 12px;
+    border-left: 2px solid #7f8f6b;
+    margin-top: 4px;
+}
+
+.impostazioni-wrap:hover .impostazioni-menu {
+    display: block;
+}
+
+.imp-titolo {
+    font-size: 11px;
+    font-weight: 600;
+    color: #7f8f6b;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.imp-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #3f4f3a;
+    padding: 3px 0;
+    cursor: pointer;
+}
+
+.imp-option input {
+    accent-color: #3f4f3a;
+}
+
+body.tema-scuro {
+    background: #1a1a1a;
 }

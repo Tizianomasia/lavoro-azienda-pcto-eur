@@ -32,7 +32,19 @@
         <ul>
             <li><a href="#">Preferiti</a></li>
             <li><a href="#">Calendario</a></li>
-            <li><a href="#">Impostazioni</a></li>
+
+            <li class="impostazioni-wrap">
+    <a href="#">Impostazioni</a>
+    <div class="impostazioni-menu">
+        <div class="imp-titolo">Tema</div>
+        <label class="imp-option">
+            <input type="radio" name="tema" value="chiaro" checked> Tema chiaro
+        </label>
+        <label class="imp-option">
+            <input type="radio" name="tema" value="scuro"> Tema scuro
+        </label>
+    </div>
+</li>
 
             <li class="album-wrap">
     <a href="#">Album</a>
@@ -151,19 +163,35 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
 
-    const searchInput     = document.getElementById('searchInput');
-    const filterBtn       = document.getElementById('filterBtn');
-    const dropdown        = document.getElementById('filterDropdown');
-    const applyBtn        = document.getElementById('applyBtn');
-    const counter         = document.getElementById('resultsCount');
-    const albumHoverBtn   = document.getElementById('albumHoverBtn');
-    const albumPanel      = document.getElementById('albumPanel');
-    const albumPanelClose = document.getElementById('albumPanelClose');
-    const albumPanelOk    = document.getElementById('albumPanelOk');
-    const section         = document.querySelector('section');
-    const searchBar       = document.querySelector('.search-bar');
+    // TEMA
+    const impostazioniWrap = document.querySelector('.impostazioni-wrap');
+    const impostazioniMenu = document.querySelector('.impostazioni-menu');
 
-    let currentSort = null;
+    impostazioniWrap.addEventListener('mouseenter', function() {
+        impostazioniMenu.style.display = 'block';
+    });
+
+    impostazioniWrap.addEventListener('mouseleave', function() {
+        impostazioniMenu.style.display = 'none';
+    });
+
+    document.querySelectorAll('input[name="tema"]').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            if (this.value === 'scuro') {
+                document.body.classList.add('tema-scuro');
+                localStorage.setItem('tema', 'scuro');
+            } else {
+                document.body.classList.remove('tema-scuro');
+                localStorage.setItem('tema', 'chiaro');
+            }
+        });
+    });
+
+    if (localStorage.getItem('tema') === 'scuro') {
+        document.body.classList.add('tema-scuro');
+        document.querySelector('input[name="tema"][value="scuro"]').checked = true;
+    }
+
 
     // FILTRI
     filterBtn.addEventListener('click', function(e) {
