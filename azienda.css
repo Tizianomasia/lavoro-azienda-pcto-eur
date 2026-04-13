@@ -1,0 +1,288 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 24px;
+  height: 68px;
+  background: #3f4f3a; /* verde salvia scuro */
+  border-bottom: 1px solid #2f3a2b;
+}
+
+.Titolo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.Titolo h1 {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #f4f1ea; /* beige chiaro */
+}
+
+.Titolo p {
+  font-size: 0.8rem;
+  color: #d6d2c4;
+  margin: 0;
+}
+
+.bottoni {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bottoni button {
+  background: #7f8f6b; /* verde salvia */
+  color: white;
+  border-radius: 8px;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.bottoni button:hover {
+  background: #6f7f5b;
+}
+
+nav {
+  padding: 10px 24px;
+  border-bottom: 1px solid #d6d2c4;
+  background: #f4f1ea; /* beige */
+}
+
+.Menu {
+  display: flex;
+  gap: 16px;
+}
+
+.Menu a {
+  text-decoration: none;
+  color: #3f4f3a;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.Menu a:hover {
+  background: #e0dbcf;
+}
+
+.contenuto {
+  display: flex;
+  flex: 1;
+}
+
+.destra {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f4f1ea;
+}
+
+aside {
+  width: 150px;
+  padding: 16px;
+  border-right: 1px solid #cfc8b8;
+  background: #d8d2c4; /* beige più scuro */
+}
+
+aside h3 {
+  margin: 0 0 8px 0;
+  font-size: 0.95rem;
+  padding: 4.3px 12px;
+  color: #3f4f3a;
+}
+
+aside hr {
+  border: none;
+  border-top: 1px solid #cfc8b8;
+  margin-bottom: 8px;
+}
+
+aside ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+aside a {
+  text-decoration: none;
+  color: #3f4f3a;
+  padding: 8px 12px;
+  display: block;
+  border-radius: 6px;
+}
+
+aside a:hover {
+  background: #cfc8b8;
+}
+
+footer {
+  background: #3f4f3a;
+  color: #f4f1ea;
+  text-align: center;
+  padding: 5px;
+  border-radius: 8px 8px 0 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background: #eae7df; /* sfondo generale */
+}
+
+/* ========================= */
+/* SECTION (contenitore card) */
+/* ========================= */
+section {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+.card {
+  background: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card.expanded {
+  transform: scale(1.02);
+}
+
+
+/* ========================= */
+/* IMMAGINE */
+/* ========================= */
+.image-container {
+  position: relative;
+}
+
+.card-image {
+  width: 100%;
+  height: 200px; /* adattata */
+  object-fit: cover;
+
+  -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+}
+
+.card:hover .card-image {
+  transform: scale(1.05);
+  transition: transform 0.4s ease;
+}
+
+
+/* ========================= */
+/* STELLE */
+/* ========================= */
+.stelle {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 18px;
+}
+
+
+/* ========================= */
+/* HEADER CARD */
+/* ========================= */
+.card-header {
+  padding: 15px 20px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: #3f4f3a;
+}
+
+
+/* ========================= */
+/* INFO */
+/* ========================= */
+.card-info-visible {
+  padding: 0 20px 10px;
+}
+
+.card-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+
+/* ========================= */
+/* CONTENUTO NASCOSTO */
+/* ========================= */
+.card-content {
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 20px;
+  transition: all 0.4s ease;
+}
+
+.card-content.show {
+  height: auto;
+  opacity: 1;
+  padding: 15px 20px;
+}
+
+
+/* ========================= */
+/* TESTI */
+/* ========================= */
+.card-rating {
+  margin-bottom: 10px;
+  color: #3f4f3a;
+}
+
+.card-description {
+  font-size: 14px;
+  margin-bottom: 15px;
+  color: #444;
+}
+
+
+/* ========================= */
+/* BOTTONE */
+/* ========================= */
+.card-button {
+  width: 100%;
+  height: 35px;
+  background: #3f4f3a; /* coerente col sito */
+  color: #f4f1ea;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.card-button:hover {
+  background: #2f3a2b;
+  transform: translateY(-2px);
+}

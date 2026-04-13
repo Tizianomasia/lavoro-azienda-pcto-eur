@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NexTrip</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="azienda.css">
+
+</head>
+
+<body>
+
+<header>
+    <div class="Titolo">
+        <h1>NexTrip</h1>
+        <p>Explore the world, your way</p>
+    </div>
+
+    <div class="bottoni">
+        <select>
+            <option>🇮🇹 IT</option>
+            <option>🇬🇧 EN</option>
+        </select>
+        <button>Login</button>
+        <button>Register</button>
+    </div>
+</header>
+
+<div class="contenuto">
+
+    <aside>
+        <h3>Menu</h3>
+        <hr>
+        <ul>
+            <li><a href="#">Preferiti</a></li>
+            <li><a href="#">Calendario</a></li>
+            <li><a href="#">Impostazioni</a></li>
+            <li><a href="#">Contatti</a></li>
+        </ul>
+    </aside>
+
+    <div class="destra">
+
+        <nav>
+            <div class="Menu">
+                <a href="#">Hotel</a>
+                <a href="#">Ristoranti</a>
+                <a href="#">Voli</a>
+            </div>
+        </nav>
+
+        <!-- 🔥 SECTION CON CARD -->
+        <section>
+
+            <div class="card" id="hotelCard">
+
+                <div class="image-container">
+                    <img src="./Screenshot 2026-04-13 172119.png" class="card-image">
+                    <div class="stelle">⭐⭐⭐⭐</div>
+                </div>
+
+                <div class="card-header">
+                    <h2 class="card-title">Hotel Borgo 14</h2>
+                </div>
+
+                <div class="card-info-visible">
+                    <div class="card-info">
+                        📞 +39 06 6880 6289
+                    </div>
+
+                    <div class="card-info">
+                        📍 Via di S. Francesco di Sales 14, Roma
+                    </div>
+                </div>
+
+                <div class="card-content" id="cardDetails">
+                    <div class="card-rating">
+                        💬 9/10 (1.773 recensioni)
+                    </div>
+
+                    <p class="card-description">
+                        Hotel a 4 stelle con terrazza panoramica nel cuore di Trastevere.
+                        Camere eleganti e posizione perfetta per visitare Roma.
+                    </p>
+
+                    <button class="card-button" onclick="event.stopPropagation()">
+                        Prenota Ora
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 NexTrip</p>
+</footer>
+
+<!-- SCRIPT -->
+<script src="service-hotel.js"></script>
+
+
+</body>
+</html>
