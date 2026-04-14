@@ -1,0 +1,105 @@
+/* ========================= */
+/* CONTAINER VOLI */
+/* ========================= */
+#voli-card {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 20px;
+  padding: 40px 20px;
+
+  background: #f0f6ff; /* azzurro cielo */
+}
+
+/* ========================= */
+/* CARD VOLO */
+/* ========================= */
+#voli-card .card {
+  width: 340px;
+  background: #ffffff;
+
+  border-radius: 18px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+
+  padding: 18px;
+  text-align: center;
+
+  transition: 0.3s ease;
+}
+
+#voli-card .card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* ========================= */
+/* HEADER VOLO */
+/* ========================= */
+.flight-header {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #38ad01;
+}
+
+/* ========================= */
+/* ROUTE */
+/* ========================= */
+.flight-route {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 15px 0;
+}
+
+.city {
+  font-size: 14px;
+  color: #333;
+}
+
+.arrow {
+  font-size: 20px;
+}
+
+/* ========================= */
+/* INFO */
+/* ========================= */
+.flight-info {
+  font-size: 13px;
+  color: #555;
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+/* ========================= */
+/* PREZZO */
+/* ========================= */
+.flight-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #38ad01;
+  margin: 10px 0;
+}
+
+/* ========================= */
+/* BOTTONE (riuso il tuo stile) */
+/* ========================= */
+#voli-card .card-button {
+  width: 100%;
+  height: 38px;
+  border: none;
+  border-radius: 22px;
+  background: #38ad01;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#voli-card .card-button:hover {
+  background: #38ad01;
+}
