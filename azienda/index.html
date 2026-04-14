@@ -66,9 +66,10 @@
 
         <nav>
             <div class="Menu">
-                <a href="#">Ristoranti</a>
-                <a href="#">Voli</a>
-                <a href="#">Luoghi</a>
+                <a href="#" onclick="setSection('hotels')">Hotel</a>
+                <a href="#" onclick="setSection('restaurants')">Ristoranti</a>
+                <a href="#" onclick="setSection('flights')">Voli</a>
+                <a href="#" onclick="setSection('places')">Luoghi</a>
             </div>
         </nav>
 
@@ -113,6 +114,8 @@
             <!-- contenuto dinamico dal server -->
         </section>
 
+        <section id="contenitore-dettaglio" style="display:none;"></section>
+
     </div>
 </div>
 
@@ -121,7 +124,7 @@
 </footer>
 
 <script src="/js/azienda.js"></script>
-<script src="/js/service-places.js"></script>
+<script src="/js/service-hotel.js"></script>
 
 </body>
 </html>

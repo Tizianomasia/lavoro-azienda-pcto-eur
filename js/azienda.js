@@ -1,16 +1,36 @@
-let currentData = [];
+window.setSection = function(section) {
+  currentSection = section;
+
+  document.getElementById("contenitore-dettaglio").style.display = "none";
+  document.getElementById("contenitore-card").style.display = "grid";
+
+  document.getElementById("contenitore-card").innerHTML = ""; // 🔥 pulisci sempre
+
+  if (section === "hotels") {
+    getHotels();
+  }
+
+  if (section === "restaurants") {
+    loadRestaurants();
+  }
+};
+
+
+
+
+/*let currentData = [];
 let renderFunction = null;
 
-// 🔥 collega dati + funzione render
+// 🔥 collega dati + render
 function setData(data, renderFn) {
   currentData = data;
   renderFunction = renderFn;
   applyFilters();
 }
-
-// 🔍 SEARCH + FILTRI
 function applyFilters() {
-  const q = document.getElementById("searchInput").value.toLowerCase().trim();
+  if (!renderFunction) return;
+
+  const q = document.getElementById("searchInput")?.value?.toLowerCase().trim() || "";
 
   let filtered = [...currentData];
 
@@ -22,7 +42,7 @@ function applyFilters() {
     );
   }
 
-  // FILTRI
+  // SORT / FILTER
   const selected = document.querySelector('input[name="sort"]:checked');
   const value = selected ? selected.value : null;
 
@@ -50,8 +70,10 @@ function applyFilters() {
   renderFunction(filtered);
 
   // COUNTER
-  document.getElementById("resultsCount").textContent =
-    filtered.length + " risultati";
+  const counter = document.getElementById("resultsCount");
+  if (counter) {
+    counter.textContent = filtered.length + " risultati";
+  }
 }
 
 /* EVENTI (UNA SOLA VOLTA)

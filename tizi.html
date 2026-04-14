@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voli Demo</title>
+    <link rel="stylesheet" href="/css/azienda.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="Titolo">
+            <h1 class="lang" data-it="Voli Demo" data-en="Flight Demo">Voli Demo</h1>
+            <p class="lang" data-it="Scopri i migliori voli" data-en="Discover the best flights">Scopri i migliori voli</p>
+        </div>
+
+        <!-- Bottoni lingua e login/register -->
+        <div class="bottoni">
+            <select id="langSelect">
+                <option value="it">🇮🇹 IT</option>
+                <option value="en">🇬🇧 EN</option>
+            </select>
+            <button class="lang" data-it="Accedi" data-en="Login">Accedi</button>
+            <button class="lang" data-it="Registrati" data-en="Register">Registrati</button>
+        </div>
+    </header>
+
+    <!-- NAV / FILTRI -->
+    <nav>
+        <div class="Menu">
+            <a href="#">Home</a>
+            <a href="#">Voli</a>
+            <a href="#">Contatti</a>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Cerca volo..." class="lang" data-it="Cerca volo..." data-en="Search flight...">
+        </div>
+
+        <!-- Contenitore card -->
+        <section id="contenitore-card" class="contenuto">
+            <!-- Le card verranno inserite dinamicamente tramite JS -->
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p class="lang" data-it="© 2026 Voli Demo" data-en="© 2026 Flight Demo">© 2026 Voli Demo</p>
+    </footer>
+
+    <!-- JS -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const contenitore = document.getElementById("contenitore-card");
+        const langSelect = document.getElementById("langSelect");
+
+        // Funzione per renderizzare le card
+        function renderCards(list) {
+            let cardHTML = "";
+            for (let i = 0; i < list.length; i++) {
+                cardHTML += `
+                <div class="card" id="flightCard-${i}">
+                    <div class="image-container">
+                        <img src="./flight.png" class="card-image">
+                        <div class="stelle">⭐⭐⭐⭐</div>
+                    </div>
+
+                    <div class="card-header">
+                        <h2 class="card-title lang" data-it="${list[i].name}" data-en="${list[i].name}">${list[i].name}</h2>
+                    </div>
+
+                    <div class="card-info-visible">
+                        <div class="card-info lang" data-it="Partenza: ${list[i].departure || 'Non disponibile'}" data-en="Departure: ${list[i].departure || 'N/A'}">
+                            ✈️ Partenza: ${list[i].departure || 'Non disponibile'}
+                        </div>
+                        <div class="card-info lang" data-it="Arrivo: ${list[i].arrival || 'Non disponibile'}" data-en="Arrival: ${list[i].arrival || 'N/A'}">
+                            🛬 Arrivo: ${list[i].arrival || 'Non disponibile'}
+                        </div>
+                        <div class="card-info lang" data-it="Aeroporto: ${list[i].airport || 'Non disponibile'}" data-en="Airport: ${list[i].airport || 'N/A'}">
+                            📍 Aeroporto: ${list[i].airport || 'Non disponibile'}
+                        </div>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="card-rating lang" data-it="Recensioni: ${list[i].rating || 'N/A'}/10" data-en="Rating: ${list[i].rating || 'N/A'}/10">
+                            💬 ${list[i].rating || 'N/A'}/10
+                        </div>
+
+                        <p class="card-description lang" data-it="${list[i].description || 'Descrizione non disponibile'}" data-en="${list[i].description || 'Description not available'}">
+                            ${list[i].description || 'Descrizione non disponibile'}
+                        </p>
+
+                        <button class="card-button lang" data-it="Prenota Volo" data-en="Book Flight">
+                            Prenota Volo
+                        </button>
+                    </div>
+                </div>
+                `;
+            }
+            contenitore.innerHTML = cardHTML;
+            changeLanguage(langSelect.value);
+        }
+
+        // Funzione per cambiare lingua
+        function changeLanguage(lang) {
+            document.querySelectorAll('.lang').forEach(el => {
+                el.textContent = el.dataset[lang];
+            });
+        }
+
+        langSelect.addEventListener('change', function() {
+            changeLanguage(this.value);
+        });
+
+        // Funzione per prendere i voli dal server
+        function getFlights() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    const flights = JSON.parse(this.responseText);
+                    renderCards(flights);
+                }
+            };
+            xhttp.open("GET", "http://localhost:8080/flights");
+            xhttp.send();
+        }
+
+        getFlights();
+    });
+    </script>
+
+</body>
+</html>
