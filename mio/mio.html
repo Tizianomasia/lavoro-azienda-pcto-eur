@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>NexTrip</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mio.css">
+</head>
+
+<body>
+
+<header>
+    <div class="Titolo">
+        <h1>NexTrip</h1>
+        <p>Explore the world, your way</p>
+    </div>
+
+    <div class="bottoni">
+        <select>
+            <option>🇮🇹 IT</option>
+            <option>🇬🇧 EN</option>
+        </select>
+        <button>Login</button>
+        <button>Register</button>
+    </div>
+</header>
+
+<div class="contenuto">
+
+    <aside>
+        <h3>Menu</h3>
+        <hr>
+        <ul>
+            <li><a href="#">Preferiti</a></li>
+            <li><a href="#">Calendario</a></li>
+
+            <li>
+                <a href="#">Impostazioni</a>
+                <label><input type="radio" name="tema" value="chiaro" checked> Chiaro</label><br>
+                <label><input type="radio" name="tema" value="scuro"> Scuro</label>
+            </li>
+
+            <li><a href="#">Album</a></li>
+            <li><a href="#">Contatti</a></li>
+        </ul>
+    </aside>
+
+    <div class="destra">
+
+        <nav>
+            <div class="Menu">
+                <a href="#">Hotel</a>
+                <a href="#">Ristoranti</a>
+                <a href="#">Voli</a>
+                <a href="#">Luoghi</a>
+            </div>
+        </nav>
+
+        <div class="search-bar">
+            <input type="text" placeholder="🔍 Cerca...">
+        </div>
+
+        <section>
+
+            <div class="card">
+                <img src="./Screenshot 2026-04-13 172119.png" class="card-image">
+
+                <h2>Hotel Borgo 14</h2>
+
+                <p>📞 +39 06 6880 6289</p>
+                <p>📍 Roma</p>
+
+                <p>💬 9/10 recensioni</p>
+
+                <button>Prenota Ora</button>
+            </div>
+
+        </section>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 NexTrip</p>
+</footer>
+
+<script>
+document.querySelectorAll('input[name="tema"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        if (this.value === 'scuro') {
+            document.body.classList.add('tema-scuro');
+        } else {
+            document.body.classList.remove('tema-scuro');
+        }
+    });
+});
+</script>
+
+</body>
+</html>

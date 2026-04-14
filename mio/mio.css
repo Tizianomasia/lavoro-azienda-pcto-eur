@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #eae7df;
+  transition: all 0.3s ease;
+}
+
+/* HEADER */
+header {
+  background: #3f4f3a;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+}
+
+.bottoni {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+/* LAYOUT */
+.contenuto {
+  display: flex;
+}
+
+aside {
+  width: 150px;
+  background: #d8d2c4;
+  padding: 10px;
+}
+
+.destra {
+  flex: 1;
+}
+
+/* NAV */
+nav {
+  background: #f4f1ea;
+  padding: 10px;
+}
+
+.Menu a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #3f4f3a;
+}
+
+/* SEARCH */
+.search-bar {
+  padding: 10px;
+}
+
+/* CARD */
+section {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 250px;
+}
+
+.card-image {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+  background: #3f4f3a;
+  color: white;
+  text-align: center;
+  padding: 10px;
+}
+
+/* 🌙 TEMA SCURO */
+body.tema-scuro {
+  background: #1f251d;
+  color: #e8e4d8;
+}
+
+body.tema-scuro header {
+  background: #2f3a2b;
+}
+
+body.tema-scuro aside {
+  background: #2a3125;
+}
+
+body.tema-scuro nav {
+  background: #2f3a2b;
+}
+
+body.tema-scuro .card {
+  background: #2f3a2b;
+  color: #e8e4d8;
+}
+
+body.tema-scuro footer {
+  background: #2f3a2b;
+}

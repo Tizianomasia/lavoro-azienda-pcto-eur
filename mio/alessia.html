@@ -1,0 +1,39 @@
+<aside>
+    <h3>Menu</h3>
+    <hr>
+    <ul>
+        <li><a href="#">Preferiti</a></li>
+        <li><a href="#">Calendario</a></li>
+        <link rel="stylesheet" href="gatti.css">
+        <li class="impostazioni-wrap">
+            <a href="#">Impostazioni</a>
+            <div class="tema-selection">
+                <label><input type="radio" name="tema" value="chiaro" checked> Chiaro</label><br>
+                <label><input type="radio" name="tema" value="scuro"> Scuro</label>
+            </div>
+        </li>
+
+        <li class="album-wrap">
+            <a href="#" id="albumLink">Album</a>
+            <div class="album-hover" id="albumHoverBtn">+ Aggiungi foto/recensione</div>
+        </li>
+        
+        <li class="contatti-wrap">
+            <a href="#">Contatti</a>
+            <div class="contatti-info">
+                📞 +39 06 1234 5678<br>
+                ✉️ info@nextrip.it
+            </div>
+        </li>
+    </ul>
+</aside>
+
+<div class="album-panel" id="albumPanel">
+    <div class="album-panel-box">
+        <span class="album-panel-close" id="albumPanelClose">✕</span>
+        <div style="font-size: 50px; color: #ffcc00; margin-bottom: 10px;">⚠️</div>
+        <h2 class="album-panel-titolo">WARNING</h2>
+        <p style="color: #666; margin-bottom: 20px;">Spiacenti, questa pagina non è al momento disponibile per manutenzione tecnica.</p>
+        <button class="album-panel-btn" id="albumPanelOk">Ok, ho capito</button>
+    </div>
+</div>
