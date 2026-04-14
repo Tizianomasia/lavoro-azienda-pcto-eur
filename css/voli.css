@@ -18,8 +18,8 @@
 /* ========================= */
 /* CARD VOLO */
 /* ========================= */
-#voli-card .card {
-  width: 340px;
+#contenitore-card .card {
+  width: 300px;
   background: #ffffff;
 
   border-radius: 18px;
@@ -31,7 +31,7 @@
   transition: 0.3s ease;
 }
 
-#voli-card .card:hover {
+#contenitore-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
 }
@@ -89,7 +89,7 @@
 /* ========================= */
 /* BOTTONE (riuso il tuo stile) */
 /* ========================= */
-#voli-card .card-button {
+#contenitore-card-button {
   width: 100%;
   height: 38px;
   border: none;
@@ -100,6 +100,6 @@
   cursor: pointer;
 }
 
-#voli-card .card-button:hover {
+#contenitore-card-button:hover {
   background: #38ad01;
 }

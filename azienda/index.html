@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/azienda.css">
+    <link rel="stylesheet" href="/css/voli.css">
 </head>
 
 <body>
@@ -78,6 +79,9 @@
         <!-- BARRA RICERCA -->
         <div class="search-bar">
             <input type="text" id="searchInput" class="search-input" placeholder="🔍 Cerca..." />
+            
+            <!-- SUGGERIMENTI AUTOCOMPLETE -->
+            <div id="searchSuggestions" class="search-suggestions"></div>
 
             <div class="search-divider"></div>
 
@@ -116,6 +120,8 @@
             <!-- contenuto dinamico dal server -->
         </section>
 
+        <section id="contenitore-dettaglio" style="display:none;"></section>
+
     </div>
 </div>
 
@@ -124,7 +130,12 @@
 </footer>
 
 <script src="/js/azienda.js"></script>
+<script src="/js/service-hotel.js"></script>
+<script src="/js/service-restaurants.js"></script>
+<script src="/js/service-flights.js"></script>
 <script src="/js/service-places.js"></script>
+
+
 
 </body>
 </html>
