@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NexTrip</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="azienda2.css">
+</head>
+
+<body>
+
+<header>
+    <div class="Titolo">
+        <h1>NexTrip</h1>
+        <p>Explore the world, your way</p>
+    </div>
+
+    <div class="bottoni">
+        <select>
+            <option>🇮🇹 IT</option>
+            <option>🇬🇧 EN</option>
+        </select>
+        <button>Login</button>
+        <button>Register</button>
+    </div>
+</header>
+
+<div class="contenuto">
+
+    <aside>
+        <h3>Menu</h3>
+        <hr>
+        <ul>
+            <li><a href="#">Preferiti</a></li>
+            <li><a href="#">Calendario</a></li>
+
+            <li class="impostazioni-wrap">
+                <a href="#">Impostazioni</a>
+                <div class="impostazioni-menu">
+                    <div class="imp-titolo">Tema</div>
+                    <label class="imp-option">
+                        <input type="radio" name="tema" value="chiaro" checked> Tema chiaro
+                    </label>
+                    <label class="imp-option">
+                        <input type="radio" name="tema" value="scuro"> Tema scuro
+                    </label>
+                </div>
+            </li>
+
+            <li class="album-wrap">
+                <a href="#">Album</a>
+                <div class="album-hover">+ Aggiungi foto/recensione</div>
+            </li>
+
+            <li class="contatti-wrap">
+                <a href="#">Contatti</a>
+                <div class="contatti-info">
+                    📞 +39 06 1234 5678<br>
+                    ✉️ info@nextrip.it
+                </div>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="destra">
+
+        <nav>
+            <div class="Menu">
+                <a href="#" onclick="setSection('hotels')">Hotel</a>
+                <a href="#" onclick="setSection('restaurants')">Ristoranti</a>
+                <a href="#" onclick="setSection('flights')">Voli</a>
+                <a href="#" onclick="setSection('places')">Luoghi</a>
+            </div>
+        </nav>
+
+        <!-- BARRA RICERCA -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Cerca..." />
+
+            <div class="search-divider"></div>
+
+            <div class="filter-wrap">
+                <button class="filter-toggle" id="filterBtn">
+                    Filtri <span class="filter-arrow" id="filterArrow">▼</span>
+                </button>
+
+                <div class="filter-dropdown" id="filterDropdown">
+
+                    <div class="dd-group">
+                        <div class="dd-group-label">Ordina per prezzo</div>
+                        <label class="dd-option"><input type="radio" name="sort" value="asc"> Meno costoso prima</label>
+                        <label class="dd-option"><input type="radio" name="sort" value="desc"> Più costoso prima</label>
+                    </div>
+
+                    <hr class="dd-hr">
+
+                    <div class="dd-group">
+                        <div class="dd-group-label">Budget massimo</div>
+                        <label class="dd-option"><input type="radio" name="sort" value="budget1"> Fino a €50</label>
+                        <label class="dd-option"><input type="radio" name="sort" value="budget2"> Fino a €150</label>
+                        <label class="dd-option"><input type="radio" name="sort" value="budget3"> Oltre €150</label>
+                    </div>
+
+                    <button class="dd-apply" id="applyBtn">Applica filtri</button>
+
+                </div>
+            </div>
+
+            <span class="results-count" id="resultsCount"></span>
+        </div>
+
+        <!-- CARDS -->
+        <section id="contenitore-card">
+            <!-- contenuto dinamico dal server -->
+        </section>
+
+        <section id="contenitore-dettaglio" style="display:none;"></section>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 NexTrip</p>
+</footer>
+
+<script src="/js/azienda.js"></script>
+<script src="/js/service-hotel.js"></script>
+<script src="/js/service-restaurant.js"></script>
+
+<script>
+document.getElementById("searchInput").addEventListener("input", function() {
+    let query = this.value.toLowerCase(); // ottieni la query dalla barra di ricerca
+    let resultsContainer = document.getElementById("contenitore-card"); // contenitore dei risultati
+    resultsContainer.innerHTML = ''; // Pulisce i risultati precedenti
+
+    // Esegui la ricerca solo se c'è una query
+    if (query.length > 0) {
+        // Simuliamo una lista di contenuti (puoi modificarlo per usare i dati reali dal backend)
+        const items = [
+            { name: 'Roma', description: 'Una bellissima città storica' },
+            { name: 'Milano', description: 'Città della moda' },
+            { name: 'Venezia', description: 'Famosa per i canali' },
+            { name: 'Napoli', description: 'Città famosa per la pizza' }
+        ];
+
+        // Filtra gli elementi che contengono la query
+        let filteredItems = items.filter(item => item.name.toLowerCase().includes(query) || item.description.toLowerCase().includes(query));
+
+        // Mostra i risultati filtrati
+        filteredItems.forEach(item => {
+            let card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-title">${item.name}</div>
+                </div>
+                <div class="card-content">
+                    <p>${item.description}</p>
+                </div>
+            `;
+            resultsContainer.appendChild(card);
+        });
+
+        // Mostra il numero di risultati
+        document.getElementById("resultsCount").innerText = `${filteredItems.length} risultati trovati`;
+    } else {
+        // Se non c'è query, mostra un messaggio che non ci sono risultati
+        resultsContainer.innerHTML = "<p>Inserisci una città o un luogo per cercare.</p>";
+        document.getElementById("resultsCount").innerText = '';
+    }
+});
+
+</script>
+<script>
+document.getElementById("searchInput").addEventListener("input", function() {
+    let query = this.value.toLowerCase(); // ottieni la query dalla barra di ricerca
+    let resultsContainer = document.getElementById("contenitore-card"); // contenitore dei risultati
+    resultsContainer.innerHTML = ''; // Pulisce i risultati precedenti
+
+    // Esegui la ricerca solo se c'è una query
+    if (query.length > 0) {
+        // Simuliamo una lista di hotel (puoi modificarlo per usare i dati reali dal backend)
+        const hotels = [
+            { name: 'Hotel Roma', description: 'Un bellissimo hotel nel cuore di Roma' },
+            { name: 'Hotel Milano', description: 'Soggiorna nel centro di Milano' },
+            { name: 'Hotel Venezia', description: 'Hotel con vista sui canali di Venezia' },
+            { name: 'Hotel Napoli', description: 'Accogliente hotel vicino al centro di Napoli' }
+        ];
+
+        // Simuliamo una lista di voli (puoi modificarlo per usare i dati reali dal backend)
+        const flights = [
+            { name: 'Volo Roma - Milano', description: 'Volo diretto da Roma a Milano' },
+            { name: 'Volo Roma - New York', description: 'Volo internazionale da Roma a New York' },
+            { name: 'Volo Napoli - Roma', description: 'Volo diretto da Napoli a Roma' },
+            { name: 'Volo Milano - Londra', description: 'Volo diretto da Milano a Londra' }
+        ];
+
+        // Funzione per filtra gli hotel o voli in base alla query
+        const filterItems = (items) => {
+            return items.filter(item => item.name.toLowerCase().includes(query) || item.description.toLowerCase().includes(query));
+        };
+
+        // Filtra gli hotel e i voli
+        const filteredHotels = filterItems(hotels);
+        const filteredFlights = filterItems(flights);
+
+        // Se vuoi visualizzare hotel e voli insieme, aggiungi entrambe le categorie:
+        const filteredItems = [...filteredHotels, ...filteredFlights];
+
+        // Mostra i risultati filtrati
+        filteredItems.forEach(item => {
+            let card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-title">${item.name}</div>
+                </div>
+                <div class="card-content">
+                    <p>${item.description}</p>
+                </div>
+            `;
+            resultsContainer.appendChild(card);
+        });
+
+        // Mostra il numero di risultati
+        document.getElementById("resultsCount").innerText = `${filteredItems.length} risultati trovati`;
+    } else {
+        // Se la query è vuota, mostra tutti gli elementi disponibili (esempio per hotel)
+        resultsContainer.innerHTML = ''; // Rimuove i vecchi risultati
+        let allItems = [...hotels, ...flights]; // Mostra tutti gli hotel e voli
+
+        allItems.forEach(item => {
+            let card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+                <div class="card-header">
+                    <div class="card-title">${item.name}</div>
+                </div>
+                <div class="card-content">
+                    <p>${item.description}</p>
+                </div>
+            `;
+            resultsContainer.appendChild(card);
+        });
+
+        document.getElementById("resultsCount").innerText = `${allItems.length} risultati totali`;
+    }
+});
+</script>
+
+</body>
+</html>
