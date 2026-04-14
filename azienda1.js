@@ -1,66 +1,22 @@
+
 document.addEventListener('DOMContentLoaded', function() {
-    // =========================
-    // CAMBIO TEMA
-    // =========================
     document.querySelectorAll('input[name="tema"]').forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            if (this.value === 'scuro') {
-                document.body.classList.add('tema-scuro');
-                localStorage.setItem('tema', 'scuro');
-            } else {
-                document.body.classList.remove('tema-scuro');
-                localStorage.setItem('tema', 'chiaro');
-            }
-        });
-    });
-
-    if (localStorage.getItem('tema') === 'scuro') {
-        document.body.classList.add('tema-scuro');
-        document.querySelector('input[name="tema"][value="scuro"]').checked = true;
-    }
-
-    // =========================
-    // CAMBIO LINGUA
-    // =========================
-    const langSelect = document.getElementById('langSelect');
-
-    // Dizionario delle parole
-    const dictionary = {
-        it: {
-            login: "Accedi",
-            register: "Registrati",
-            welcomeTitle: "Benvenuto",
-            welcomeText: "Questa è una demo"
-        },
-        en: {
-            login: "Login",
-            register: "Register",
-            welcomeTitle: "Welcome",
-            welcomeText: "This is a demo"
+    radio.addEventListener('change', function() {
+        if (this.value === 'scuro') {
+            document.body.classList.add('tema-scuro');
+            localStorage.setItem('tema', 'scuro');
+        } else {
+            document.body.classList.remove('tema-scuro');
+            localStorage.setItem('tema', 'chiaro');
         }
-    };
-
-    function updateLanguage(lang) {
-        document.getElementById('loginBtn').textContent = dictionary[lang].login;
-        document.getElementById('registerBtn').textContent = dictionary[lang].register;
-        document.getElementById('welcomeTitle').textContent = dictionary[lang].welcomeTitle;
-        document.getElementById('welcomeText').textContent = dictionary[lang].welcomeText;
-        localStorage.setItem('lang', lang);
-    }
-
-    // Carica lingua salvata
-    const savedLang = localStorage.getItem('lang') || 'it';
-    langSelect.value = savedLang;
-    updateLanguage(savedLang);
-
-    // Cambia lingua quando selezionata
-    langSelect.addEventListener('change', function() {
-        updateLanguage(this.value);
     });
+});
 
-    // =========================
-    // CODICE PRECEDENTE: FILTRI, CARDS, ALBUM, CONTATTI ecc.
-    // =========================
+if (localStorage.getItem('tema') === 'scuro') {
+    document.body.classList.add('tema-scuro');
+    document.querySelector('input[name="tema"][value="scuro"]').checked = true;
+}
+
     const searchInput     = document.getElementById('searchInput');
     const filterBtn       = document.getElementById('filterBtn');
     const dropdown        = document.getElementById('filterDropdown');

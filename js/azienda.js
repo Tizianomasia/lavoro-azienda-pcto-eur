@@ -1,102 +1,64 @@
+let currentData = [];
+let renderFunction = null;
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('input[name="tema"]').forEach(function(radio) {
-    radio.addEventListener('change', function() {
-        if (this.value === 'scuro') {
-            document.body.classList.add('tema-scuro');
-            localStorage.setItem('tema', 'scuro');
-        } else {
-            document.body.classList.remove('tema-scuro');
-            localStorage.setItem('tema', 'chiaro');
-        }
-    });
-});
-
-if (localStorage.getItem('tema') === 'scuro') {
-    document.body.classList.add('tema-scuro');
-    document.querySelector('input[name="tema"][value="scuro"]').checked = true;
+// 🔥 collega dati + funzione render
+function setData(data, renderFn) {
+  currentData = data;
+  renderFunction = renderFn;
+  applyFilters();
 }
 
-    const searchInput     = document.getElementById('searchInput');
-    const filterBtn       = document.getElementById('filterBtn');
-    const dropdown        = document.getElementById('filterDropdown');
-    const applyBtn        = document.getElementById('applyBtn');
-    const counter         = document.getElementById('resultsCount');
-    const albumHoverBtn   = document.getElementById('albumHoverBtn');
-    const albumPanel      = document.getElementById('albumPanel');
-    const albumPanelClose = document.getElementById('albumPanelClose');
-    const albumPanelOk    = document.getElementById('albumPanelOk');
-    const section         = document.querySelector('section');
-    const searchBar       = document.querySelector('.search-bar');
+// 🔍 SEARCH + FILTRI
+function applyFilters() {
+  const q = document.getElementById("searchInput").value.toLowerCase().trim();
 
-    let currentSort = null;
+  let filtered = [...currentData];
 
-    // FILTRI
-    filterBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        dropdown.classList.toggle('show');
-        filterBtn.classList.toggle('open');
-    });
+  // SEARCH
+  if (q) {
+    filtered = filtered.filter(item =>
+      item.name.toLowerCase().includes(q) ||
+      (item.address && item.address.toLowerCase().includes(q))
+    );
+  }
 
-    document.addEventListener('click', function() {
-        dropdown.classList.remove('show');
-        filterBtn.classList.remove('open');
-    });
+  // FILTRI
+  const selected = document.querySelector('input[name="sort"]:checked');
+  const value = selected ? selected.value : null;
 
-    dropdown.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
+  if (value === "asc") {
+    filtered.sort((a,b) => (a.price||0)-(b.price||0));
+  }
 
-    document.querySelectorAll('.dd-option').forEach(function(opt) {
-        opt.querySelector('input').addEventListener('change', function() {
-            document.querySelectorAll('.dd-option').forEach(function(o) {
-                o.classList.remove('selected');
-            });
-            opt.classList.add('selected');
-        });
-    });
+  if (value === "desc") {
+    filtered.sort((a,b) => (b.price||0)-(a.price||0));
+  }
 
-    applyBtn.addEventListener('click', function() {
-        const sv = document.querySelector('input[name="sort"]:checked');
-        currentSort = sv ? sv.value : null;
-        dropdown.classList.remove('show');
-        filterBtn.classList.remove('open');
-        applyFilters();
-    });
+  if (value === "budget1") {
+    filtered = filtered.filter(h => (h.price || 0) <= 50);
+  }
 
-    searchInput.addEventListener('input', applyFilters);
+  if (value === "budget2") {
+    filtered = filtered.filter(h => (h.price || 0) <= 150);
+  }
 
-    function applyFilters() {
-        const q = searchInput.value.toLowerCase().trim();
-        const cards = Array.from(section.querySelectorAll('.card'));
+  if (value === "budget3") {
+    filtered = filtered.filter(h => (h.price || 0) > 150);
+  }
 
-        cards.forEach(function(card) {
-            const nome   = (card.dataset.nome || '').toLowerCase();
-            const tipo   = (card.dataset.tipo || '').toLowerCase();
-            const prezzo = parseFloat(card.dataset.prezzo) || 0;
+  // RENDER
+  renderFunction(filtered);
 
-            let visible = true;
-            if (q && !nome.includes(q) && !tipo.includes(q)) visible = false;
-            if (currentSort === 'budget1' && prezzo > 50)    visible = false;
-            if (currentSort === 'budget2' && prezzo > 150)   visible = false;
-            if (currentSort === 'budget3' && prezzo <= 150)  visible = false;
+  // COUNTER
+  document.getElementById("resultsCount").textContent =
+    filtered.length + " risultati";
+}
 
-            card.classList.toggle('hidden', !visible);
-        });
-
-        const visible = cards.filter(function(c) { return !c.classList.contains('hidden'); });
-        const hidden  = cards.filter(function(c) { return  c.classList.contains('hidden'); });
-
-        if (currentSort === 'asc')  visible.sort(function(a,b){ return parseFloat(a.dataset.prezzo) - parseFloat(b.dataset.prezzo); });
-        if (currentSort === 'desc') visible.sort(function(a,b){ return parseFloat(b.dataset.prezzo) - parseFloat(a.dataset.prezzo); });
-
-        visible.concat(hidden).forEach(function(c) { section.appendChild(c); });
-
-        const n = visible.length;
-        counter.textContent = n + ' risultat' + (n === 1 ? 'o' : 'i');
-    }
-
-    applyFilters();
+/* EVENTI (UNA SOLA VOLTA)
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("searchInput").addEventListener("input", applyFilters);
+  document.getElementById("applyBtn").addEventListener("click", applyFilters);
+});
 
     // ALBUM
     function apriAlbum() {
@@ -127,4 +89,4 @@ if (localStorage.getItem('tema') === 'scuro') {
         contattiInfo.style.display = 'none';
     });
 
-});
+});*/

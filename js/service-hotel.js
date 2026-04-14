@@ -35,3 +35,45 @@ document.addEventListener("DOMContentLoaded", getHotels);
 function oneclick(name) {
   alert("Hai cliccato su: " + name);
 }
+
+document.getElementById("hotel").addEventListener("load", getHotels());
+function ShowDetail(id) {
+  alert("Hai cliccato su: " + id + " nella pagina degli hotel" );
+
+  document.getElementById("contenitori_card").style.display = "none";
+  document.getElementById("contenitore-dattaglio").style.display = "block";
+  let card = "";
+
+  for (let i = 0; i < hotels?.length; i++) {
+    if (hotels[i].id === id) { 
+      card += '<div class="card-dettaglio">';
+      card +=
+      '<button class="pulsante-card-dettaglio" onclick="goback()"><img src="../sito-fase-8/img/go-back.svg" alt=""  />torna Indietro</button>'; 
+      card += "<div>";
+      card += "<h2>" + hotels[i].name + "</h2>";
+
+      let stars = "";
+      for (let j = 0; j < hotels[i].stars; j++) {
+        stars += "⭐";
+      }
+      card += stars;
+      card += '<hr class="divisore-card" />';
+      card += "</div>";
+      card += '<div class="contenuto-card">';
+      card += "<p>" + hotels[i].longDescription + "</p>";
+      card += "<p><em>Indirizzo:</em> " + hotels[i].address.streetAddress + "</p>";
+      card +="<p><em>Città:</em> " + hotels[i].address.city + "</p>";
+      card += "<p><em>Paese:</em> " + hotels[i].address.country + "</p>";
+      card += "<p><em>CAP:</em> " + hotels[i].address.ZipCode + "</p>";
+      card += "</div>";
+      card += "</div>";
+
+      document.getElementById("contenitore-dettaglio").innerHTML = card;
+    }
+  }
+}
+
+function goBack() {
+  document.getElementById("contenitori_dettaglio").style.display = "none";
+  document.getElementById("contenitore-card").style.display = "flex";
+}
