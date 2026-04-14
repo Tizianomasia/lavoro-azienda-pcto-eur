@@ -1,11 +1,3 @@
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  margin: 0;
-  background: #eae7df;
-}
-
 header {
   display: flex;
   align-items: center;
@@ -13,9 +5,10 @@ header {
   position: relative;
   padding: 0 24px;
   height: 68px;
-  background: #3f4f3a;
+  background: #3f4f3a; /* verde salvia scuro */
   border-bottom: 1px solid #2f3a2b;
 }
+
 
 .Titolo {
   position: absolute;
@@ -25,13 +18,13 @@ header {
 }
 
 .Titolo h1 {
-  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  font-size: 1.5rem;
   margin: 0;
-  color: #f4f1ea;
+  color: #f4f1ea; /* beige chiaro */
 }
 
 .Titolo p {
-  font-size: clamp(0.7rem, 2vw, 0.8rem);
+  font-size: 0.8rem;
   color: #d6d2c4;
   margin: 0;
 }
@@ -44,7 +37,7 @@ header {
 }
 
 .bottoni button {
-  background: #7f8f6b;
+  background: #7f8f6b; /* verde salvia */
   color: white;
   border-radius: 8px;
   border: none;
@@ -59,13 +52,12 @@ header {
 nav {
   padding: 10px 24px;
   border-bottom: 1px solid #d6d2c4;
-  background: #f4f1ea;
+  background: #f4f1ea; /* beige */
 }
 
 .Menu {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap;
 }
 
 .Menu a {
@@ -89,15 +81,13 @@ nav {
   display: flex;
   flex-direction: column;
   background: #f4f1ea;
-  min-width: 0;
 }
 
 aside {
-  width: clamp(100px, 15%, 180px);
+  width: 150px;
   padding: 16px;
   border-right: 1px solid #cfc8b8;
-  background: #d8d2c4;
-  flex-shrink: 0;
+  background: #d8d2c4; /* beige più scuro */
 }
 
 aside h3 {
@@ -128,7 +118,6 @@ aside a {
   padding: 8px 12px;
   display: block;
   border-radius: 6px;
-  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
 }
 
 aside a:hover {
@@ -139,21 +128,36 @@ footer {
   background: #3f4f3a;
   color: #f4f1ea;
   text-align: center;
-  padding: 12px;
+  padding: 5px;
   border-radius: 8px 8px 0 0;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  background: #eae7df; /* sfondo generale */
+}
+
+/* ========================= */
+/* SECTION (contenitore card) */
+/* ========================= */
 section {
   padding: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 
+
+/* ========================= */
+/* CARD */
+/* ========================= */
 .card {
   background: #f9f9f9;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   overflow: hidden;
   width: 100%;
   cursor: pointer;
@@ -168,14 +172,19 @@ section {
   transform: scale(1.02);
 }
 
+
+/* ========================= */
+/* IMMAGINE */
+/* ========================= */
 .image-container {
   position: relative;
 }
 
 .card-image {
   width: 100%;
-  height: 200px;
+  height: 200px; /* adattata */
   object-fit: cover;
+
   -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
 }
@@ -185,6 +194,10 @@ section {
   transition: transform 0.4s ease;
 }
 
+
+/* ========================= */
+/* STELLE */
+/* ========================= */
 .stelle {
   position: absolute;
   top: 10px;
@@ -193,17 +206,25 @@ section {
   font-size: 18px;
 }
 
+
+/* ========================= */
+/* HEADER CARD */
+/* ========================= */
 .card-header {
   padding: 15px 20px;
 }
 
 .card-title {
-  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  font-size: 18px;
   font-weight: bold;
   margin: 0;
   color: #3f4f3a;
 }
 
+
+/* ========================= */
+/* INFO */
+/* ========================= */
 .card-info-visible {
   padding: 0 20px 10px;
 }
@@ -213,9 +234,12 @@ section {
   align-items: center;
   margin-bottom: 6px;
   color: #555;
-  font-size: clamp(0.75rem, 1.5vw, 0.9rem);
 }
 
+
+/* ========================= */
+/* CONTENUTO NASCOSTO */
+/* ========================= */
 .card-content {
   height: 0;
   overflow: hidden;
@@ -230,6 +254,10 @@ section {
   padding: 15px 20px;
 }
 
+
+/* ========================= */
+/* TESTI */
+/* ========================= */
 .card-rating {
   margin-bottom: 10px;
   color: #3f4f3a;
@@ -241,10 +269,14 @@ section {
   color: #444;
 }
 
+
+/* ========================= */
+/* BOTTONE */
+/* ========================= */
 .card-button {
   width: 100%;
   height: 35px;
-  background: #3f4f3a;
+  background: #3f4f3a; /* coerente col sito */
   color: #f4f1ea;
   border: none;
   border-radius: 20px;
@@ -253,22 +285,21 @@ section {
 
 .card-button:hover {
   background: #2f3a2b;
+  transform: translateY(-2px);
 }
 
 .search-bar {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
+  gap: 2px;
+  padding: 6px 6px;
   background: #f4f1ea;
   border-bottom: 1px solid #d6d2c4;
-  flex-wrap: wrap;
   position: relative;
 }
 
 .search-input {
   flex: 1;
-  min-width: 120px;
   height: 28px;
   padding: 0 14px;
   border: 1px solid #cfc8b8;
@@ -278,7 +309,6 @@ section {
   font-size: 14px;
   outline: none;
 }
-
 .search-input:focus {
   border-color: #7f8f6b;
 }
@@ -309,7 +339,6 @@ section {
   transition: all 0.2s;
   white-space: nowrap;
 }
-
 .filter-toggle:hover,
 .filter-toggle.open {
   background: #3f4f3a;
@@ -322,7 +351,6 @@ section {
   transition: transform 0.2s;
   display: inline-block;
 }
-
 .filter-toggle.open .filter-arrow {
   transform: rotate(180deg);
 }
@@ -340,7 +368,6 @@ section {
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
   z-index: 999;
 }
-
 .filter-dropdown.show {
   display: block;
 }
@@ -348,7 +375,6 @@ section {
 .dd-group {
   margin-bottom: 10px;
 }
-
 .dd-group-label {
   font-size: 11px;
   font-weight: 600;
@@ -369,16 +395,13 @@ section {
   color: #3f4f3a;
   transition: background 0.15s;
 }
-
 .dd-option:hover {
   background: #f0ebe0;
 }
-
 .dd-option.selected {
   background: #3f4f3a;
   color: #f4f1ea;
 }
-
 .dd-option input[type="radio"] {
   accent-color: #3f4f3a;
 }
@@ -400,7 +423,6 @@ section {
   cursor: pointer;
   margin-top: 6px;
 }
-
 .dd-apply:hover {
   background: #2f3a2b;
 }
@@ -416,192 +438,87 @@ section {
 }
 
 .contatti-info {
-  display: none;
-  padding: 8px 12px;
-  font-size: 12px;
-  color: #3f4f3a;
-  border-left: 2px solid #7f8f6b;
-  margin-top: 4px;
-  line-height: 1.8;
+    display: none;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #3f4f3a;
+    border-left: 2px solid #7f8f6b;
+    margin-top: 4px;
+    line-height: 1.8;
 }
 
 .contatti-wrap:hover .contatti-info {
-  display: block;
+    display: block;
 }
 
 .album-panel {
-  display: none;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  background: #f4f1ea;
-  padding: 40px;
+    display: none;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background: #f4f1ea;
+    padding: 40px;
 }
 
 .album-panel.show {
-  display: flex;
+    display: flex;
 }
 
 .album-panel-box {
-  background: #fff;
-  border: 1px solid #cfc8b8;
-  border-radius: 16px;
-  padding: 40px 32px;
-  text-align: center;
-  max-width: 360px;
-  width: 100%;
-  position: relative;
+    background: #fff;
+    border: 1px solid #cfc8b8;
+    border-radius: 16px;
+    padding: 40px 32px;
+    text-align: center;
+    max-width: 360px;
+    width: 100%;
+    position: relative;
 }
 
 .album-panel-close {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 16px;
-  cursor: pointer;
-  color: #888;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #888;
 }
 
 .album-panel-close:hover {
-  color: #3f4f3a;
+    color: #3f4f3a;
 }
 
 .album-panel-titolo {
-  font-size: 16px;
-  font-weight: bold;
-  color: #3f4f3a;
-  margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #3f4f3a;
+    margin-bottom: 8px;
 }
 
 .album-panel-btn {
-  background: #3f4f3a;
-  color: #f4f1ea;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 24px;
-  font-size: 13px;
-  cursor: pointer;
+    background: #3f4f3a;
+    color: #f4f1ea;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-size: 13px;
+    cursor: pointer;
 }
 
 .album-panel-btn:hover {
-  background: #2f3a2b;
+    background: #2f3a2b;
 }
 
 .album-hover {
-  display: none;
-  font-size: 86%;
-  color: #5c7440;
-  padding: 4px 12px;
-  cursor: pointer;
-  border-left: 2px solid #7f8f6b;
-  margin-top: 4px;
+    display: none;
+    font-size: 86%;
+    color: #5c7440;
+    padding: 4px 12px;
+    cursor: pointer;
+    border-left: 2px solid #7f8f6b;
+    margin-top: 4px;
 }
 
 .album-wrap:hover .album-hover {
-  display: block;
-}
-
-.impostazioni-menu {
-  display: none;
-  padding: 8px 12px;
-  font-size: 12px;
-  color: #3f4f3a;
-  border-left: 2px solid #7f8f6b;
-  margin-top: 4px;
-}
-
-.impostazioni-wrap:hover .impostazioni-menu {
-  display: block;
-}
-
-.imp-titolo {
-  font-weight: 600;
-  margin-bottom: 6px;
-}
-
-.imp-option {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 4px;
-  cursor: pointer;
-}
-
-/* ========================= */
-/* RESPONSIVE */
-/* ========================= */
-@media (max-width: 768px) {
-
-  .contenuto {
-    flex-direction: column;
-  }
-
-  aside {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #cfc8b8;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-  }
-
-  aside h3 {
-    margin: 0;
-    white-space: nowrap;
-  }
-
-  aside hr {
-    display: none;
-  }
-
-  aside ul {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-
-  aside a {
-    padding: 4px 10px;
-  }
-
-  .Titolo {
-    position: static;
-    transform: none;
-  }
-
-  header {
-    justify-content: space-between;
-    height: auto;
-    padding: 10px 16px;
-  }
-
-  .bottoni {
-    margin-left: 0;
-  }
-
-  .filter-dropdown {
-    right: auto;
-    left: 0;
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-
-  header {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .bottoni {
-    width: 100%;
-    justify-content: center;
-  }
-
-  section {
-    grid-template-columns: 1fr;
-    padding: 12px;
-  }
+    display: block;
 }
