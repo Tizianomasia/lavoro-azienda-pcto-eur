@@ -1,4 +1,3 @@
-// ==================== AUTOCOMPLETE SEARCH ====================
 let currentSection = "hotels";
 
 // Genera i suggerimenti di ricerca
@@ -206,6 +205,7 @@ window.setSection = function(section) {
   if (section === "flights")     getFlights();
   if (section === "places")      getPlaces();
 };
+
 
 
 /*let currentData = [];

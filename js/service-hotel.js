@@ -1,12 +1,16 @@
 let hotels = [];
-
-// ------------------- CARICA HOTEL -------------------
 function getHotels() {
+
+  if (currentSection !== "hotels") return;
+
   const xhttp = new XMLHttpRequest();
   const url = "http://localhost:8080/hotels";
 
   xhttp.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
+
+      // 🔥 controllo IMPORTANTISSIMO
+      if (currentSection !== "hotels") return;
 
       hotels = JSON.parse(this.responseText);
 
@@ -15,7 +19,6 @@ function getHotels() {
       for (let i = 0; i < hotels.length; i++) {
 
         card += '<div class="card">';
-
         card += '<div class="card-header">';
         card += '<h2 class="card-title">' + hotels[i].name + '</h2>';
         card += '</div>';
@@ -26,13 +29,11 @@ function getHotels() {
         card += '</div>';
 
         card += '<div class="card-content show">';
-
-        // ✅ CLICK CORRETTO
         card += '<button class="card-button" onclick="showDetail(\'' + hotels[i].id + '\')">';
         card += 'Vai al dettaglio';
         card += '</button>';
-
         card += '</div>';
+
         card += '</div>';
       }
 
