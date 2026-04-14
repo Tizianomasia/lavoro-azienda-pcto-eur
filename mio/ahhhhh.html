@@ -4,7 +4,7 @@
     <title>NexTrip</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/azienda.css">
+    <link rel="stylesheet" href="gatti.css">
 </head>
 
 <body>
@@ -35,24 +35,32 @@
         <hr>
         <ul>
             <li><a href="#">Preferiti</a></li>
-            
-            <li class="impostazioni-wrap">
-                <a href="#">Impostazioni</a>
-                <div class="impostazioni-menu">
-                    <div class="imp-titolo">Tema</div>
-                    <label class="imp-option">
-                        <input type="radio" name="tema" value="chiaro" checked> Tema chiaro
-                    </label>
-                    <label class="imp-option">
-                        <input type="radio" name="tema" value="scuro"> Tema scuro
-                    </label>
-                </div>
-            </li>
 
-            <li class="album-wrap">
-                <a href="#">Album</a>
-                <div class="album-hover">+ Aggiungi foto/recensione</div>
-            </li>
+
+<li class="impostazioni-wrap">
+    <button onclick="toggleImpostazioni()" class="imp-btn">Impostazioni</button>
+
+    <div class="impostazioni-menu" id="impMenu">
+        <p><strong>Tema</strong></p>
+
+        <label>
+            <input type="radio" name="tema" value="chiaro" checked>
+            Tema chiaro
+        </label>
+
+        <label>
+            <input type="radio" name="tema" value="scuro">
+            Tema scuro
+        </label>
+    </div>
+</li>
+           <li class="album-wrap">
+    <a href="#" onclick="openImage(event)">Album</a>
+</li>
+
+<div id="imm" class="popup-overlay" onclick="closeImage(event)">
+    <img src="/IMG/ah.jpeg" alt="immagine album">
+</div>
 
             <li class="contatti-wrap">
                 <a href="#">Contatti</a>
@@ -123,7 +131,7 @@
     <p>© 2026 NexTrip</p>
 </footer>
 
-<script src="/js/azienda.js"></script>
+<script src="ahhhhhh.js"></script>
 <script src="/js/service-places.js"></script>
 
 </body>

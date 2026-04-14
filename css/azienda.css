@@ -523,3 +523,15 @@ body {
 .album-wrap:hover .album-hover {
     display: block;
 }
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.logo img {
+    width: 90px;   /* puoi cambiarlo */
+    height: auto;
+}
